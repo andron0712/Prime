@@ -1,10 +1,24 @@
 function isPrime(n) {
-    if (n <= 1) return false;
-    for (let i = 2; i <= Math.sqrt(n); i++) {
-        if (n % i === 0) return false;
+    // 1. Числа менше або рівні 1 не є простими
+    if (n <= 1) {
+        return false;
     }
+
+    // 2. Оптимізація: перевіряємо дільники від 2 до квадратного кореня з n
+    // Якщо число має дільник, то хоча б один із них буде <= sqrt(n)
+    for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) {
+            // Якщо знайдено дільник без залишку — число не просте
+            return false;
+        }
+    }
+
+    // 3. Якщо дільників не знайдено — число просте
     return true;
 }
 
-// Приклад використання:
-console.log(isPrime(17)); // Виведе true
+// Приклади для перевірки:
+console.log(isPrime(1));  // false
+console.log(isPrime(2));  // true
+console.log(isPrime(17)); // true
+console.log(isPrime(20)); // false
