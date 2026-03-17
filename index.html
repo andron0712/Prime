@@ -1,55 +1,20 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <title>Перевірка на простоту</title>
-    <style>
-        body { font-family: sans-serif; text-align: center; padding-top: 50px; }
-        input { padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
-        button { padding: 10px 20px; font-size: 16px; cursor: pointer; background: #28a745; color: white; border: none; border-radius: 5px; }
-        #result { margin-top: 20px; font-weight: bold; font-size: 18px; }
-    </style>
+<meta charset="UTF-8">
+<title>Перевірка числа на простоту</title>
 </head>
+
 <body>
 
-    <h2>Завдання 2: Перевірка числа на простоту</h2>
-    
-    <input type="number" id="numberInput" placeholder="Введіть число...">
-    <button onclick="checkNumber()">Перевірити</button>
+<h2>Перевірка числа на простоту</h2>
 
-    <div id="result"></div>
+<input type="number" id="numberInput" placeholder="Введіть число">
+<button onclick="checkPrime()">Перевірити</button>
 
-    <script>
-        // Функція isPrime за вашим завданням
-        function isPrime(n) {
-            if (n <= 1) return false;
-            for (let i = 2; i <= Math.sqrt(n); i++) {
-                if (n % i === 0) return false;
-            }
-            return true;
-        }
+<p id="result"></p>
 
-        // Функція, яка бере число з поля і виводить результат на екран
-        function checkNumber() {
-            const input = document.getElementById('numberInput').value;
-            const resultDiv = document.getElementById('result');
-            const n = parseInt(input);
-
-            if (isNaN(n)) {
-                resultDiv.innerHTML = "Будь ласка, введіть число.";
-                resultDiv.style.color = "orange";
-                return;
-            }
-
-            if (isPrime(n)) {
-                resultDiv.innerHTML = `Число ${n} — ПРОСТЕ! ✅`;
-                resultDiv.style.color = "green";
-            } else {
-                resultDiv.innerHTML = `Число ${n} — не є простим. ❌`;
-                resultDiv.style.color = "red";
-            }
-        }
-    </script>
+<script src="script.js"></script>
 
 </body>
 </html>
