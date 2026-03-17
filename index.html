@@ -1,24 +1,55 @@
-function isPrime(n) {
-    // 1. Числа менше або рівні 1 не є простими
-    if (n <= 1) {
-        return false;
-    }
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Перевірка на простоту</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+        input { padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; background: #28a745; color: white; border: none; border-radius: 5px; }
+        #result { margin-top: 20px; font-weight: bold; font-size: 18px; }
+    </style>
+</head>
+<body>
 
-    // 2. Оптимізація: перевіряємо дільники від 2 до квадратного кореня з n
-    // Якщо число має дільник, то хоча б один із них буде <= sqrt(n)
-    for (let i = 2; i <= Math.sqrt(n); i++) {
-        if (n % i === 0) {
-            // Якщо знайдено дільник без залишку — число не просте
-            return false;
+    <h2>Завдання 2: Перевірка числа на простоту</h2>
+    
+    <input type="number" id="numberInput" placeholder="Введіть число...">
+    <button onclick="checkNumber()">Перевірити</button>
+
+    <div id="result"></div>
+
+    <script>
+        // Функція isPrime за вашим завданням
+        function isPrime(n) {
+            if (n <= 1) return false;
+            for (let i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i === 0) return false;
+            }
+            return true;
         }
-    }
 
-    // 3. Якщо дільників не знайдено — число просте
-    return true;
-}
+        // Функція, яка бере число з поля і виводить результат на екран
+        function checkNumber() {
+            const input = document.getElementById('numberInput').value;
+            const resultDiv = document.getElementById('result');
+            const n = parseInt(input);
 
-// Приклади для перевірки:
-console.log(isPrime(1));  // false
-console.log(isPrime(2));  // true
-console.log(isPrime(17)); // true
-console.log(isPrime(20)); // false
+            if (isNaN(n)) {
+                resultDiv.innerHTML = "Будь ласка, введіть число.";
+                resultDiv.style.color = "orange";
+                return;
+            }
+
+            if (isPrime(n)) {
+                resultDiv.innerHTML = `Число ${n} — ПРОСТЕ! ✅`;
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.innerHTML = `Число ${n} — не є простим. ❌`;
+                resultDiv.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
